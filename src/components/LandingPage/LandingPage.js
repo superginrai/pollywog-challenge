@@ -29,6 +29,7 @@ const styles = theme => ({
 });
 
 const mapStateToProps = state => ({
+    randomArt: state.randomArt,
 });
 
 /**
@@ -70,6 +71,7 @@ class LandingPage extends Component {
                     payload: art
                 };
                 this.props.dispatch(action);
+                console.log(this.props.randomArt[0]._source.title)
             })
             .catch(err => {
                 console.error(err);
@@ -80,6 +82,7 @@ class LandingPage extends Component {
         // const action = { type: 'API_CALL' }
         // this.props.dispatch(action);
         this.apiCall();
+        console.log(this.props.randomArt)
     }
 
     render() {
@@ -90,12 +93,12 @@ class LandingPage extends Component {
                     <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
                         <ListSubheader component="div">Art</ListSubheader>
                     </GridListTile>
-                    {tileData.map(tile => (
-                        <GridListTile key={tile.img}>
-                            <img src={tile.img} alt={tile.title} />
+                    {this.props.randomArt.map(tile => (
+                        <GridListTile key={tile._source.title}>
+                            <img src={tile.img} alt={tile._source.title} />
                             <GridListTileBar
-                                title={tile.title}
-                                subtitle={<span>by: {tile.author}</span>}
+                                title={tile._source.title}
+                                subtitle={<span>by: {tile._source.artist}</span>}
                                 actionIcon={
                                     <IconButton className={classes.icon}>
                                         <InfoIcon />
