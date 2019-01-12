@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
@@ -27,6 +28,8 @@ const styles = theme => ({
     },
 });
 
+const mapStateToProps = state => ({
+});
 
 /**
  * The example data is structured as follows:
@@ -62,6 +65,11 @@ class LandingPage extends Component {
             .then(response => {
                 let art = response.data;
                 console.log(art);
+                const action = {
+                    type: 'ELASTIC_RESULTS',
+                    payload: art
+                };
+                this.props.dispatch(action);
             })
             .catch(err => {
                 console.error(err);
@@ -69,6 +77,8 @@ class LandingPage extends Component {
     };
     
     componentDidMount() {
+        // const action = { type: 'API_CALL' }
+        // this.props.dispatch(action);
         this.apiCall();
     }
 
@@ -78,7 +88,7 @@ class LandingPage extends Component {
             <div className={classes.root}>
                 <GridList cellHeight={180} className={classes.gridList}>
                     <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-                        <ListSubheader component="div">December</ListSubheader>
+                        <ListSubheader component="div">Art</ListSubheader>
                     </GridListTile>
                     {tileData.map(tile => (
                         <GridListTile key={tile.img}>
@@ -103,4 +113,4 @@ LandingPage.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(LandingPage);
+export default connect(mapStateToProps)(withStyles(styles)(LandingPage));
