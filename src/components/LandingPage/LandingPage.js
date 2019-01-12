@@ -15,7 +15,6 @@ import ArtTile from '../ArtTile/ArtTile';
 const styles = theme => ({
     root: {
         display: 'flex',
-        // textAlign: 'center',
         flexWrap: 'wrap',
         justifyContent: 'space-around',
         overflow: 'hidden',
@@ -90,7 +89,7 @@ class LandingPage extends Component {
                         // <ArtTile tile={tile}/>
                         <GridListTile key={tile._source.title} onClick={() => this.getInfo(tile)}>
                             <img src={`https://1.api.artsmia.org/${tile._id}.jpg`} alt={tile._source.title} />
-                            <GridListTileBar
+                            {/* <GridListTileBar
                                 title={tile._source.title}
                                 subtitle={<span>by: {tile._source.artist}</span>}
                                 actionIcon={
@@ -98,7 +97,7 @@ class LandingPage extends Component {
                                         <InfoIcon />
                                     </IconButton>
                                 }
-                            />
+                            /> */}
                         </GridListTile>
                     ))}
                 </GridList>
