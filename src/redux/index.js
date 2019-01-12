@@ -19,10 +19,20 @@ const tileInfo = (state = [], action) => {
     }
 }
 
+const favoriteArt = (state = [], action) => {
+    switch (action.type) {
+        case 'MAKE_FAVORITE':
+            return [...state, action.payload];
+        default:
+            return state;
+    }
+}
+
 const storeInstance = createStore(
     combineReducers({
         randomArt,
         tileInfo,
+        favoriteArt,
     }),
     applyMiddleware(logger),
 )

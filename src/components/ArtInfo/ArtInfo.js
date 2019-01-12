@@ -9,14 +9,10 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import red from '@material-ui/core/colors/red';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 const styles = theme => ({
@@ -63,28 +59,23 @@ class ArtInfo extends Component {
         this.setState(state => ({ expanded: !state.expanded }));
     };
 
+    makeFavorite = (tile) => {
+        const action = { type: 'MAKE_FAVORITE', payload: tile }
+        this.props.dispatch(action);
+    }
+
     render() {
         const { classes } = this.props;
         return (
             <Card className={classes.card}>
                 <CardHeader
-                    //     avatar={
-                    //         <Avatar aria-label="Recipe" className={classes.avatar}>
-                    //             R
-                    // </Avatar>
-                    //     }
-                    //     action={
-                    //         <IconButton>
-                    //             <MoreVertIcon />
-                    //         </IconButton>
-                    //     }
                     title={this.props.tileInfo._source.title}
                     subheader={this.props.tileInfo._source.dated}
                 />
                 <CardMedia
                     className={classes.media}
                     image={`https://1.api.artsmia.org/${this.props.tileInfo._id}.jpg`} alt={this.props.tileInfo._source.title}
-                    title="Paella dish"
+                    title={this.props.tileInfo._source.object_name}
                 />
                 <CardContent>
                     <Typography component="p">
@@ -92,15 +83,13 @@ class ArtInfo extends Component {
                     </Typography>
                 </CardContent>
                 <CardActions className={classes.actions} disableActionSpacing>
-                    <IconButton aria-label="Add to favorites" className={classes.icon}>
+                    <IconButton
+                        aria-label="Add to favorites"
+                        className={classes.icon}
+                        onClick={() => this.makeFavorite(this.props.tileInfo)}
+                    >
                         <StarBorderIcon />
                     </IconButton>
-                    {/* <IconButton aria-label="Add to favorites">
-                        <FavoriteIcon />
-                    </IconButton>
-                    <IconButton aria-label="Share">
-                        <ShareIcon />
-                    </IconButton> */}
                     <IconButton
                         className={classnames(classes.expand, {
                             [classes.expandOpen]: this.state.expanded,
