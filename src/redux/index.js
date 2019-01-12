@@ -10,11 +10,21 @@ const randomArt = (state = [], action) => {
     }
 };
 
+const tileInfo = (state = [], action) => {
+    switch (action.type) {
+        case 'GET_INFO':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
 const storeInstance = createStore(
     combineReducers({
-   randomArt,
+        randomArt,
+        tileInfo,
     }),
     applyMiddleware(logger),
 )
 
-    export default storeInstance;
+export default storeInstance;
