@@ -60,7 +60,7 @@ class LandingPage extends Component {
 
     apiCall = () => {
         axios({
-            url: "https://search.artsmia.org/random/art?size=10",
+            url: "https://search.artsmia.org/random/art?size=10&q=image:valid",
             method: 'GET',
         })
             .then(response => {
@@ -95,7 +95,7 @@ class LandingPage extends Component {
                     </GridListTile>
                     {this.props.randomArt.map(tile => (
                         <GridListTile key={tile._source.title}>
-                            <img src={tile.img} alt={tile._source.title} />
+                            <img src={`https://1.api.artsmia.org/${tile._id}.jpg`} alt={tile._source.title} />
                             <GridListTileBar
                                 title={tile._source.title}
                                 subtitle={<span>by: {tile._source.artist}</span>}
