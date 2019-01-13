@@ -28,11 +28,21 @@ const favoriteArt = (state = [], action) => {
     }
 }
 
+const relatedArt = (state = [], action) => {
+    switch (action.type) {
+        case 'RELATED_RESULTS':
+            return action.payload;
+        default:
+            return state;
+    }
+};
+
 const storeInstance = createStore(
     combineReducers({
         randomArt,
         tileInfo,
         favoriteArt,
+        relatedArt,
     }),
     applyMiddleware(logger),
 )
