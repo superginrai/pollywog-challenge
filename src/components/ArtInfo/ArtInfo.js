@@ -20,7 +20,7 @@ import RelatedCard from '../RelatedCard/RelatedCard';
 
 const styles = theme => ({
     card: {
-        maxWidth: 600,
+        maxWidth: 450,
     },
     media: {
         height: 0,
@@ -45,7 +45,7 @@ const styles = theme => ({
     paper: {
         padding: theme.spacing.unit * 2,
         textAlign: 'center',
-        color: theme.palette.text.secondary,
+        // color: theme.palette.text.secondary,
     },
 });
 
@@ -103,8 +103,8 @@ class ArtInfo extends Component {
         const { classes } = this.props;
         return (
             <div className={classes.root}>
-                <Grid container spacing={8} direction="row" >
-                    <Grid item xs={3}>
+                <Grid container spacing={8} justify={'center'} >
+                    <Grid item xs={12} >
                         <Card className={classes.card}>
                             <CardHeader
                                 title={this.props.tileInfo._source.title}
@@ -157,7 +157,6 @@ class ArtInfo extends Component {
                             </Collapse>
                         </Card>
                     </Grid>
-
                     <Grid item xs={12}>
                         <Paper className={classes.paper}><h2>Related</h2></Paper>
                     </Grid>
