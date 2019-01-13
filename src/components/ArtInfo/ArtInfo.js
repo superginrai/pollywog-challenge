@@ -158,7 +158,7 @@ class ArtInfo extends Component {
                         </Card>
                     </Grid>
                     <Grid item xs={12}>
-                        <Paper className={classes.paper}><h2>Related</h2></Paper>
+                        <Paper className={classes.paper}><h2>More from {this.props.tileInfo._source.department}:</h2></Paper>
                     </Grid>
                     {this.props.relatedArt.map(cardInfo =>
                         <RelatedCard cardInfo={cardInfo} makeFavorite={this.makeFavorite} />)}

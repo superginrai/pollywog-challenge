@@ -9,6 +9,7 @@ import {
 import Header from './components/Header/Header';
 import LandingPage from './components/LandingPage/LandingPage';
 import FavoritesPage from './components/FavoritesPage/FavoritesPage';
+import AudioTour from './components/AudioTour/AudioTour';
 import ArtInfo from './components/ArtInfo/ArtInfo';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import './style.css';
@@ -16,12 +17,6 @@ import './style.css';
 const theme = createMuiTheme({
   palette: {
     type: 'dark',
-  },
-  secondary: {
-    light: '#ff7961',
-    main: '#f44336',
-    dark: '#ba000d',
-    contrastText: '#000',
   },
 });
 
@@ -39,6 +34,10 @@ const App = () => (
           <Route
             path="/fav"
             component={FavoritesPage}
+          />
+           <Route
+            path="/audio"
+            component={AudioTour}
           />
           <Route
             path="/info"

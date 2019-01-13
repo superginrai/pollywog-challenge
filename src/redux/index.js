@@ -37,12 +37,22 @@ const relatedArt = (state = [], action) => {
     }
 };
 
+const audioArt = (state = [], action) => {
+    switch (action.type) {
+        case 'AUDIO_RESULTS':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
 const storeInstance = createStore(
     combineReducers({
         randomArt,
         tileInfo,
         favoriteArt,
         relatedArt,
+        audioArt,
     }),
     applyMiddleware(logger),
 )

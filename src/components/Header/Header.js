@@ -14,6 +14,9 @@ const Header = () => (
             <Link to="/fav">
                 <h2 className="nav-link">Favorites</h2>
             </Link>
+            <Link to="/audio">
+                <h2 className="nav-link">Audio Tour</h2>
+            </Link>
         </div>
     </div>
 );
