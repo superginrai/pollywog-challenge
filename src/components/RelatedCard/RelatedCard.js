@@ -81,13 +81,13 @@ class RelatedCard extends Component {
                         </Typography>
                     </CardContent>
                     <CardActions className={classes.actions} disableActionSpacing>
-                        {/* <IconButton
+                        <IconButton
                         aria-label="Add to favorites"
                         className={classes.icon}
-                        onClick={() => this.makeFavorite(this.props.cardInfo)}
+                        onClick={() => this.props.makeFavorite(this.props.cardInfo)}
                     >
                         <StarBorderIcon />
-                    </IconButton> */}
+                    </IconButton>
                         <IconButton
                             className={classnames(classes.expand, {
                                 [classes.expandOpen]: this.state.expanded,

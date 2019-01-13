@@ -76,7 +76,7 @@ class ArtInfo extends Component {
 
     apiRelatedCall = () => {
         axios({
-            url: "https://search.artsmia.org/random/art?size=4&q=image:valid*",
+            url: `https://search.artsmia.org/random/art?size=4&q=department:${this.props.tileInfo._source.department}*`,
             method: 'GET',
         })
             .then(response => {
@@ -103,7 +103,7 @@ class ArtInfo extends Component {
         const { classes } = this.props;
         return (
             <div className={classes.root}>
-                <Grid container spacing={24} direction="row" >
+                <Grid container spacing={8} direction="row" >
                     <Grid item xs={3}>
                         <Card className={classes.card}>
                             <CardHeader
@@ -162,7 +162,7 @@ class ArtInfo extends Component {
                         <Paper className={classes.paper}><h2>Related</h2></Paper>
                     </Grid>
                     {this.props.relatedArt.map(cardInfo =>
-                        <RelatedCard cardInfo={cardInfo} />)}
+                        <RelatedCard cardInfo={cardInfo} makeFavorite={this.makeFavorite} />)}
                 </Grid>
             </div >
         );
