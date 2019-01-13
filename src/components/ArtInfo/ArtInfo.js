@@ -62,6 +62,7 @@ class ArtInfo extends Component {
     makeFavorite = (tile) => {
         const action = { type: 'MAKE_FAVORITE', payload: tile }
         this.props.dispatch(action);
+        this.props.history.push('/fav');
     }
 
     render() {

@@ -1,0 +1,31 @@
+.nav-title {
+    font-size: 48px;
+    font-weight: 700;
+    display: inline-block;
+    color: #f2f2f2;
+    padding-left: 10px;
+}
+
+.nav {
+  overflow: hidden;
+  background-color: #000000;
+}
+
+.nav-link {
+  float: left;
+  color: #f2f2f2;
+  background-color: #000000;
+  text-align: center;
+  padding: 24px 24px;
+  text-decoration: none;
+  font-size: 20px;
+
+}
+
+.nav-link:hover {
+  background-color: #304041;
+}
+
+.nav-right {
+  float: right;
+}

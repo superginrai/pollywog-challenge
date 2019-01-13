@@ -9,8 +9,6 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
-import tileData from './tileData';
-import ArtTile from '../ArtTile/ArtTile';
 
 const styles = theme => ({
     root: {
@@ -30,10 +28,10 @@ const styles = theme => ({
 });
 
 const mapStateToProps = state => ({
-    randomArt: state.randomArt,
+    favoriteArt: state.favoriteArt,
 });
 
-class LandingPage extends Component {
+class FavoritesPage extends Component {
     constructor(props) {
         super(props)
 
@@ -41,26 +39,6 @@ class LandingPage extends Component {
 
         }
     }
-
-    apiCall = () => {
-        axios({
-            url: "https://search.artsmia.org/random/art?size=10&q=image:valid*",
-            method: 'GET',
-        })
-            .then(response => {
-                let art = response.data;
-                console.log(art);
-                const action = {
-                    type: 'ELASTIC_RESULTS',
-                    payload: art
-                };
-                this.props.dispatch(action);
-                console.log(this.props.randomArt[0]._source.title)
-            })
-            .catch(err => {
-                console.error(err);
-            });
-    };
 
     getInfo  = (tile) => {
         console.log(tile._source.title);
@@ -70,34 +48,30 @@ class LandingPage extends Component {
     }
 
     componentDidMount() {
-        // const action = { type: 'API_CALL' }
-        // this.props.dispatch(action);
-        this.apiCall();
-        console.log(this.props.randomArt)
+    console.log(this.props.favoriteArt)
     }
 
     render() {
         const { classes } = this.props;
         return (
             <div className={classes.root}>
-            {/* <h2>mia + pollywog</h2> */}
+       
                 <GridList cellHeight={180} className={classes.gridList}>
-                    {/* <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-                        <ListSubheader component="div"><h3>click for more info</h3></ListSubheader>
-                    </GridListTile> */}
-                    {this.props.randomArt.map(tile => (
-                        // <ArtTile tile={tile}/>
+                    <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
+                        <ListSubheader component="div"><h2>Favorites</h2></ListSubheader>
+                    </GridListTile>
+                    {this.props.favoriteArt.map(tile => (
                         <GridListTile key={tile._source.title} onClick={() => this.getInfo(tile)}>
                             <img src={`https://1.api.artsmia.org/${tile._id}.jpg`} alt={tile._source.title} />
-                            {/* <GridListTileBar
+                            <GridListTileBar
                                 title={tile._source.title}
-                                subtitle={<span>by: {tile._source.artist}</span>}
-                                actionIcon={
-                                    <IconButton className={classes.icon}>
-                                        <InfoIcon />
-                                    </IconButton>
-                                }
-                            /> */}
+                                subtitle={<span>{tile._source.artist}</span>}
+                                // actionIcon={
+                                //     <IconButton className={classes.icon}>
+                                //         <InfoIcon />
+                                //     </IconButton>
+                                // }
+                            />
                         </GridListTile>
                     ))}
                 </GridList>
@@ -105,8 +79,8 @@ class LandingPage extends Component {
         );
     }
 }
-LandingPage.propTypes = {
+FavoritesPage.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default connect(mapStateToProps)(withStyles(styles)(LandingPage));
+export default connect(mapStateToProps)(withStyles(styles)(FavoritesPage));
