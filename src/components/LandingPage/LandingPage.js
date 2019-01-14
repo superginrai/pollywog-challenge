@@ -43,7 +43,7 @@ class LandingPage extends Component {
 
     apiCall = () => {
         axios({
-            url: "https://search.artsmia.org/random/art?size=10&q=image:valid*",
+            url: 'https://search.artsmia.org/random/art?size=10&q=image:valid*',
             method: 'GET',
         })
             .then(response => {

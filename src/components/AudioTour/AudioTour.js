@@ -11,31 +11,32 @@ import Typography from '@material-ui/core/Typography';
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
+import TourStops from './TourStops';
 
 const styles = theme => ({
     card: {
         display: 'flex',
-      },
-      details: {
+    },
+    details: {
         display: 'flex',
         flexDirection: 'column',
-      },
-      content: {
+    },
+    content: {
         flex: '1 0 auto',
-      },
-      cover: {
+    },
+    cover: {
         width: 151,
-      },
-      controls: {
+    },
+    controls: {
         display: 'flex',
         alignItems: 'center',
         paddingLeft: theme.spacing.unit,
         paddingBottom: theme.spacing.unit,
-      },
-      playIcon: {
+    },
+    playIcon: {
         height: 38,
         width: 38,
-      },
+    },
 });
 
 const mapStateToProps = state => ({
@@ -62,67 +63,75 @@ class AudioTour extends Component {
     //     this.props.history.push('/fav');
     // }
 
-    apiAudioCall = () => {
-        axios({
-            url: 'https://search.artsmia.org/id/1218',
-            method: 'GET',
-        })
-            .then(response => {
-                let art = response.data;
-                console.log(art);
-                const action = {
-                    type: 'AUDIO_RESULTS',
-                    payload: art
-                };
-                this.props.dispatch(action);
-            })
-            .catch(err => {
-                console.error(err);
-            });
-    };
+    // apiAudioCall = () => {
+    //     axios({
+    //         url: 'https://search.artsmia.org/random/art?size=4&q=image:valid*',
+    //         method: 'GET',
+    //     })
+    //         .then(response => {
+    //             let art = response.data;
+    //             console.log(art);
+    //             const action = {
+    //                 type: 'AUDIO_RESULTS',
+    //                 payload: art
+    //             };
+    //             this.props.dispatch(action);
+    //         })
+    //         .catch(err => {
+    //             console.error(err);
+    //         });
+    // };
 
-    componentDidMount() {
-        this.apiAudioCall();
-        console.log(this.props.audioArt)
-    }
+    // componentDidMount() {
+    //     this.apiAudioCall();
+    //     console.log(this.props.audioArt)
+    // }
 
     render() {
         const { classes, theme } = this.props;
         return (
             <div>
-            <Card className={classes.card}>
-            <div className={classes.details}>
-              <CardContent className={classes.content}>
-                <Typography component="h5" variant="h5">
-                  Live From Space
-                </Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  Mac Miller
-                </Typography>
-              </CardContent>
-              <div className={classes.controls}>
-                <IconButton aria-label="Previous">
-                  {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
-                </IconButton>
-                <IconButton aria-label="Play/pause">
-                  <PlayArrowIcon className={classes.playIcon} />
-                </IconButton>
-                <IconButton aria-label="Next">
-                  {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
-                </IconButton>
-              </div>
-            </div>
-            <CardMedia
-              className={classes.cover}
-              image="/static/images/cards/live-from-space.jpg"
-              title="Live from space album cover"
-            />
-          </Card>
-          {/* {this.props.audioArt.map((audioCard) => 
+                {TourStops.map(stop => (
+                    <Card className={classes.card}>
+                        <div className={classes.details}>
+                            <CardContent className={classes.content}>
+                                <Typography component="h5" variant="h5">
+                                    {stop.title}
+                                </Typography>
+                                <Typography variant="subtitle1" color="textSecondary">
+                                    {stop.artist}
+                                </Typography>
+                            </CardContent>
+                            <div className={classes.controls}>
+                                <audio
+                                    controls
+                                    src={stop.audio}>
+                                    Your browser does not support the
+                                    <code>audio</code> element.
+                                </audio>
+                                {/* <IconButton aria-label="Previous">
+                                    {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
+                                </IconButton>
+                                <IconButton aria-label="Play/pause">
+                                    <PlayArrowIcon className={classes.playIcon} />
+                                </IconButton>
+                                <IconButton aria-label="Next">
+                                    {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
+                                </IconButton> */}
+                            </div>
+                        </div>
+                        <CardMedia
+                            className={classes.cover}
+                            image={stop.image}
+                            title={stop.title}
+                        />
+                    </Card>
+                ))}
+                {/* {this.props.audioArt.map((audioCard) => 
           <p> { audioCard }</p>
           )} */}
-    {/* {this.props.audioArt.related_audio_stops[0].link} */}
-          </div>
+                {/* {this.props.audioArt.related_audio_stops[0].link} */}
+            </div>
         );
     }
 }
