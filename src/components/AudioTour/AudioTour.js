@@ -12,6 +12,7 @@ import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 import TourStops from './TourStops';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
     card: {
@@ -48,10 +49,24 @@ class AudioTour extends Component {
     constructor(props) {
         super(props)
 
-        // this.state = {
-        //     expanded: false,
-        // }
+        this.state = {
+            randomAudio: '001',
+        }
     }
+
+    handleAudioClick = () => {
+        let randomNumber = Math.floor(Math.random() * (970 - 1 + 1)) + 1;
+        if (randomNumber < 100){
+            randomNumber = ('0' + randomNumber)
+        }
+        if (randomNumber < 10){
+            randomNumber = ('0' + randomNumber)
+        }
+        this.setState(state => ({
+            randomAudio: randomNumber
+        }))
+        console.log(randomNumber);
+    };
 
     // handleExpandClick = () => {
     //     this.setState(state => ({ expanded: !state.expanded }));
@@ -127,10 +142,13 @@ class AudioTour extends Component {
                         />
                     </Card>
                 ))}
-                {/* {this.props.audioArt.map((audioCard) => 
-          <p> { audioCard }</p>
-          )} */}
-                {/* {this.props.audioArt.related_audio_stops[0].link} */}
+                <audio
+                    controls
+                    src={`http://audio-tours.s3.amazonaws.com/p${this.state.randomAudio}.mp3`}>
+                    Your browser does not support the
+                                    <code>audio</code> element.
+                                </audio>
+                                <Button variant="contained" color="primary" className={classes.button} onClick={this.handleAudioClick}>Browse Audio Tours</Button>
             </div>
         );
     }
