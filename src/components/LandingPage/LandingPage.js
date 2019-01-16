@@ -30,12 +30,12 @@ const mapStateToProps = state => ({
 class LandingPage extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
-
         }
     }
 
+    //Retrieves JSON data of 10 random artworks, prioritizing ones with a image file and sends it to redux.
+    //This data is stored in the randomArt array and mapped to the DOM in a Material UI GridList.
     apiCall = () => {
         axios({
             url: 'https://search.artsmia.org/random/art?size=10&q=image:valid*',
@@ -56,6 +56,8 @@ class LandingPage extends Component {
             });
     };
 
+    //When the user clicks on a piece of art they are pushed to the ArtInfo page
+    //where they can view more info about that piece and see related works.
     getInfo  = (tile) => {
         console.log(tile._source.title);
         const action = { type: 'GET_INFO', payload: tile }

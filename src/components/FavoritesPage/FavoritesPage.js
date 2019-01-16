@@ -38,15 +38,13 @@ class FavoritesPage extends Component {
         }
     }
 
+    //When the user clicks on a piece of art they are pushed to the ArtInfo page
+    //where they can view more info about that piece and see related works.
     getInfo  = (tile) => {
         console.log(tile._source.title);
         const action = { type: 'GET_INFO', payload: tile }
         this.props.dispatch(action);
         this.props.history.push('/info');
-    }
-
-    componentDidMount() {
-    console.log(this.props.favoriteArt)
     }
 
     render() {

@@ -63,16 +63,21 @@ class ArtInfo extends Component {
         }
     }
 
+    //Handler for the artwork card's expansion drop-down.
     handleExpandClick = () => {
         this.setState(state => ({ expanded: !state.expanded }));
     };
 
+    //Sends the clicked on card's JSON data to redux where it is stored in the favoriteArt array.
+    //The user is then pushed to the FavoritesPage.
     makeFavorite = (tile) => {
         const action = { type: 'MAKE_FAVORITE', payload: tile }
         this.props.dispatch(action);
         this.props.history.push('/fav');
     }
 
+    //Makes a call to MIA's api and retrieves the JSON data of 4 art pieces in same department as the one the user click on the LandingPage.
+    //This data is sent to redux, stored in the relatedArt array, and then mapped to the DOM on Material UI cards.
     apiRelatedCall = () => {
         axios({
             url: `https://search.artsmia.org/random/art?size=4&q=department:${this.props.tileInfo._source.department}*`,

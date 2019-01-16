@@ -57,6 +57,8 @@ class AudioTour extends Component {
         }
     }
 
+    //Generates a random three digit number between 001 and 970 which is used to retrieve a random file
+    //from MIA's audio tour where it is hosted on AWS.
     handleAudioClick = () => {
         let randomNumber = Math.floor(Math.random() * (970 - 1 + 1)) + 1;
         if (randomNumber < 100) {

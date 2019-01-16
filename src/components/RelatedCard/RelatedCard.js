@@ -45,12 +45,12 @@ const styles = theme => ({
 class RelatedCard extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
             expanded: false,
         }
     }
 
+    //Handler for the artwork card's expansion drop-down.
     handleExpandClick = () => {
         this.setState(state => ({ expanded: !state.expanded }));
     };
