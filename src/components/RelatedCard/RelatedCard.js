@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
@@ -42,11 +41,6 @@ const styles = theme => ({
         backgroundColor: red[500],
     },
 });
-
-// const mapStateToProps = state => ({
-//     tileInfo: state.tileInfo,
-// });
-
 
 class RelatedCard extends Component {
     constructor(props) {

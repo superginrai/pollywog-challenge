@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import SkipNextIcon from '@material-ui/icons/SkipNext';
 import TourStops from './TourStops';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        overflow: 'hidden',
+        backgroundColor: theme.palette.background.paper,
+    },
     card: {
         display: 'flex',
     },
@@ -72,8 +74,8 @@ class AudioTour extends Component {
     render() {
         const { classes, theme } = this.props;
         return (
-            <div>
-                <Grid container alignItems={'center'} justify={'center'} direction={'column'} >
+            <div className={classes.root}>
+                <Grid container alignItems={'center'} justify={'center'} direction={'column'} style={{ marginBottom: 60 }}>
                     <Grid item >
                         {TourStops.map(stop => (
                             <Card className={classes.card}>
@@ -93,15 +95,6 @@ class AudioTour extends Component {
                                             Your browser does not support the
                                     <code>audio</code> element.
                                 </audio>
-                                        {/* <IconButton aria-label="Previous">
-                                    {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
-                                </IconButton>
-                                <IconButton aria-label="Play/pause">
-                                    <PlayArrowIcon className={classes.playIcon} />
-                                </IconButton>
-                                <IconButton aria-label="Next">
-                                    {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
-                                </IconButton> */}
                                     </div>
                                 </div>
                                 <CardMedia
@@ -121,11 +114,10 @@ class AudioTour extends Component {
                                 </audio>
                     </Grid>
                     <Grid item>
-                        <Button variant="contained" color="primary" className={classes.button} onClick={this.handleAudioClick}>Random Audio Tour</Button>
+                        <Button variant="contained" color="secondary" className={classes.button} onClick={this.handleAudioClick}>Random Audio Tour</Button>
                     </Grid>
                 </Grid>
             </div>
-
         );
     }
 }
