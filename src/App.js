@@ -17,6 +17,16 @@ import './style.css';
 const theme = createMuiTheme({
   palette: {
     type: 'dark',
+    primary: {
+      light: '#818181',
+      main: '#424242',
+      dark: '212121',
+    },
+    secondary: {
+      light: '#b0bec5',
+      main: '#607d8b',
+      dark: '#37474f',
+    }
   },
 });
 
@@ -35,7 +45,7 @@ const App = () => (
             path="/fav"
             component={FavoritesPage}
           />
-           <Route
+          <Route
             path="/audio"
             component={AudioTour}
           />
