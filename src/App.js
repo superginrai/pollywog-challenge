@@ -1,28 +1,63 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from 'react-router-dom';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+import Header from './components/Header/Header';
+import LandingPage from './components/LandingPage/LandingPage';
+import FavoritesPage from './components/FavoritesPage/FavoritesPage';
+import AudioTour from './components/AudioTour/AudioTour';
+import ArtInfo from './components/ArtInfo/ArtInfo';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import './style.css';
+
+const theme = createMuiTheme({
+  palette: {
+    type: 'dark',
+    primary: {
+      light: '#818181',
+      main: '#424242',
+      dark: '212121',
+    },
+    secondary: {
+      light: '#b0bec5',
+      main: '#607d8b',
+      dark: '#37474f',
+    }
+  },
+});
+
+const App = () => (
+  <MuiThemeProvider theme={theme}>
+    <Router>
+      <div>
+        <Header />
+        <Switch>
+          <Redirect exact from="/" to="/home" />
+          <Route
+            path="/home"
+            component={LandingPage}
+          />
+          <Route
+            path="/fav"
+            component={FavoritesPage}
+          />
+          <Route
+            path="/audio"
+            component={AudioTour}
+          />
+          <Route
+            path="/info"
+            component={ArtInfo}
+          />
+          <Route render={() => <h1>4O4</h1>} />
+        </Switch>
       </div>
-    );
-  }
-}
+    </Router>
+  </MuiThemeProvider>
+);
 
 export default App;

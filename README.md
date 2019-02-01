@@ -1,68 +1,19 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Cory Booth's Pollywog Code Challenge featuring MIA
 
-## Available Scripts
+Hi guys.
 
-In the project directory, you can run:
+You should be able to get it running with an ```npm install``` and an ```npm start```
 
-### `npm start`
+The approach I took was pretty straight forward.  I wanted to keep it simple and clean, but hopefully have a little bit of the feel of the actual MIA website as well.  I had access to MIA's css file for their website through a hack-a-thon I did, and I was very excited to be able to use their font.  I used the Material UI Gridlist for the main part of the app, which I think has a very orginized, clean look that I really like for galleries.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+I started off with Create React App and built up from there.  I decided pretty early to use redux for the api info storage and I feel like that worked pretty well.  I mostly designed the layout for a browser, but I tweaked a couple things so it also looks decent on mobile (or at the least the mobile view in Chrome).
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+I built it in stages starting with the base features and then moving on to the bonus criteria.  I admittedly got a little hack-y with some of the bonus features.  In the service of moving quickly, I made the "star" feature very simple and do not currently have a way to "unstar" the artworks.
 
-### `npm test`
+I chose to have the permalink art info page show related works in the same department and was happy with how that worked over all.  I wasn't able to find a way to return both related works and prioritize works with images, so unfornunately many do not have images.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The audio tour was the last feature I implemented and I couldn't quite make it work as described.  No matter what I tried or researched, I couldn't get a request to work for that section of the JSON file.  But since I'd alreay spent so much time on the feature, I decided to implement a few hard-coded tour stops.  I also set up an audio player that retrives random clips from the AWS hosting site.
 
-### `npm run build`
+It's always hard to guage how much time to spend on a project like this, and I'm sure I could have ironed out some of the bugs (I mean features;) if I continued to work on it.  That being said, I felt like this was a good place to stop (at least for now) and give you guys a chance to check out what I did accomplish.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Thank you so much for the opportunity and I look forward to discussing it further with you all!
